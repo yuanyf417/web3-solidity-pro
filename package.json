@@ -15,7 +15,10 @@
     "simulate:deploy": "node scripts/simulate-deploy.js",
     "node": "npx hardhat node",
     "coverage": "npx hardhat coverage",
-    "lint": "npx solhint 'contracts/**/*.sol'"
+    "lint": "npx solhint 'contracts/**/*.sol'",
+    "compile:crowdfund": "npx hardhat compile --config hardhat-crowdfund.config.js",
+    "deploy:crowdfund:local": "npx hardhat run scripts-crowdfund/deploy-crowdfund.js --network hardhat",
+    "test:crowdfund": "npx hardhat test test-crowdfund/crowdfund.test.js"
   },
   "keywords": [
     "ethereum",
