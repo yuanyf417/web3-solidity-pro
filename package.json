@@ -1,0 +1,47 @@
+{
+  "name": "creator-token-system",
+  "version": "1.0.0",
+  "description": "CreatorToken生态系统 - 创作者奖励和治理平台",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx hardhat test",
+    "compile": "npx hardhat compile",
+    "deploy": "npx hardhat run scripts/deploy.js",
+    "deploy:sepolia": "npx hardhat run scripts/deploy.js --network sepolia",
+    "deploy:mumbai": "npx hardhat run scripts/deploy.js --network mumbai",
+    "deploy:local": "npx hardhat run scripts/deploy.js --network hardhat",
+    "check:balance:sepolia": "npx hardhat run scripts/check-balance.js --network sepolia",
+    "check:balance:mumbai": "npx hardhat run scripts/check-balance.js --network mumbai",
+    "simulate:deploy": "node scripts/simulate-deploy.js",
+    "node": "npx hardhat node",
+    "coverage": "npx hardhat coverage",
+    "lint": "npx solhint 'contracts/**/*.sol'"
+  },
+  "keywords": [
+    "ethereum",
+    "solidity",
+    "creator",
+    "token",
+    "web3"
+  ],
+  "author": "Developer",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.0.0",
+    "@nomiclabs/hardhat-waffle": "^2.0.0",
+    "@openzeppelin/hardhat-upgrades": "^1.14.0",
+    "@openzeppelin/test-helpers": "^0.5.16",
+    "chai": "^4.3.4",
+    "ethereum-waffle": "^3.0.0",
+    "ethers": "^5.5.0",
+    "hardhat": "^2.10.0",
+    "hardhat-gas-reporter": "^1.0.7",
+    "solhint": "^3.3.6",
+    "solidity-coverage": "^0.7.16"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.0",
+    "dotenv": "^17.2.3"
+  }
+}

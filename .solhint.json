@@ -1,0 +1,16 @@
+{
+  "extends": "solhint:recommended",
+  "plugins": [],
+  "rules": {
+    "avoid-suicide": "error",
+    "avoid-sha3": "warn",
+    "func-visibility": ["error", {"ignoreConstructors": false}],
+    "max-line-length": ["warn", 120],
+    "no-empty-blocks": ["warn", {"ignoreConstructors": true}],
+    "not-rely-on-time": "warn",
+    "quotes": ["error", "single"],
+    "contract-name-camelcase": "off",
+    "var-name-mixedcase": "off",
+    "indent": ["warn", 2]
+  }
+}
