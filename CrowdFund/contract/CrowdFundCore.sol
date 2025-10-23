@@ -124,7 +124,8 @@ contract CrowdFundCore is Ownable, ReentrancyGuard, Pausable {
      * @param crowdfundId 众筹ID
      */
     function invest(uint256 crowdfundId) external payable nonReentrant whenNotPaused {
-        require(msg.value > 0, "Investment amount must be greater than 0");
+        // 最小投资金额为0.01 ETH
+        require(msg.value >= 0.01 ether, "Investment amount must be at least 0.01 ETH");
         
         Crowdfund storage crowdfund = crowdfunds[crowdfundId];
         require(crowdfund.status == CrowdfundStatus.ACTIVE, "Crowdfund is not active");
@@ -301,5 +302,14 @@ contract CrowdFundCore is Ownable, ReentrancyGuard, Pausable {
      */
     function getContractBalance() external view returns (uint256) {
         return address(this).balance;
+    }
+    
+    /**
+     * @dev 接收ETH函数
+     * @notice 允许直接向合约发送ETH
+     */
+    receive() external payable {
+        // 注意：直接发送ETH到合约不会与特定的众筹活动关联
+        // 这些资金将保留在合约中，可以通过其他函数使用
     }
 }

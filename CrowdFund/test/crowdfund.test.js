@@ -29,6 +29,9 @@ describe("CrowdFund 合约测试", function () {
     );
     await crowdfundCore.deployed();
     
+    // 将InvestorRegistry的所有权转移给CrowdFundCore
+    await investorRegistry.transferOwnership(crowdfundCore.address);
+    
     // 转移部分代币给CrowdFundCore
     initialSupply = await mybToken.totalSupply();
     const investorAllocation = initialSupply.mul(70).div(100); // 70%
@@ -39,7 +42,7 @@ describe("CrowdFund 合约测试", function () {
     it("应该正确部署所有合约", async function () {
       expect(await mybToken.name()).to.equal("CrowdFund Token");
       expect(await mybToken.symbol()).to.equal("MYB");
-      expect(await investorRegistry.owner()).to.equal(owner.address);
+      expect(await investorRegistry.owner()).to.equal(crowdfundCore.address); // 现在所有者是CrowdFundCore
       expect(await crowdfundCore.owner()).to.equal(owner.address);
     });
     
@@ -85,7 +88,7 @@ describe("CrowdFund 合约测试", function () {
       })).to.emit(crowdfundCore, "CrowdfundSuccessful");
       
       const crowdfund = await crowdfundCore.getCrowdfundStatus(1);
-      expect(crowdfund.status).to.equal(3); // SUCCESSFUL = 3
+      expect(crowdfund.status).to.equal(2); // SUCCESSFUL = 2 (根据实际枚举值调整)
     });
     
     it("应该能够释放资金", async function () {

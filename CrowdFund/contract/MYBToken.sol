@@ -14,8 +14,8 @@ contract MYBToken is ERC20, Ownable {
     // 代币总量：100,000 MYB
     uint256 private constant _INITIAL_SUPPLY = 100_000 * (10 ** uint256(_DECIMALS));
     
-    // 兑换比例：1 ETH = 100 MYB
-    uint256 public exchangeRate = 100;
+    // 兑换比例：1 ETH = 10000 MYB
+    uint256 public exchangeRate = 10000;
     
     /**
      * @dev 构造函数
