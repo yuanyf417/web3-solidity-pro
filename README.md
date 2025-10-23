@@ -1,26 +1,49 @@
-# CreatorToken生态系统
+# Web3 Solidity 项目集
+
+本仓库包含两个独立的基于以太坊的智能合约项目：CreatorToken（创作者奖励平台）和CrowdFund（众筹平台）。
+
+## 项目概述
+
+### CreatorToken
 
 一个基于以太坊的创作者奖励和治理平台，让创作者能够获得粉丝的直接支持，并参与平台治理。
 
-## 功能特点
+**主要合约：**
+- `CreatorRegistry.sol` - 创作者注册和验证系统
+- `CreatorToken.sol` - 创作者专属代币
+- `Governance.sol` - 去中心化治理系统
+- `RevenuePool.sol` - 收益分配池
+- `TokenVesting.sol` - 代币线性释放合约
 
-- **创作者注册与验证** - 创作者可以在平台注册并获得不同级别的验证
-- **多种打赏方式** - 支持ETH和ERC20代币打赏
-- **透明的收益分配** - 清晰的费用结构和收益计算
-- **代币释放计划** - 支持线性释放的代币分配
-- **去中心化治理** - 基于代币的提案和投票系统
+### CrowdFund
+
+一个基于以太坊的众筹平台，允许项目方创建众筹活动，投资者参与投资并获得MYB代币奖励。
+
+**主要合约：**
+- `CrowdFundCore.sol` - 众筹核心逻辑
+- `MYBToken.sol` - 众筹奖励代币（1 ETH = 10000 MYB）
+- `InvestorRegistry.sol` - 投资者信息管理
+
+**特色功能：**
+- 支持创建众筹活动，设置目标金额和截止时间
+- 最小投资金额为0.01 ETH
+- 众筹成功后自动分配资金（70%给项目方，20%给开发基金，10%给社区基金）
+- 众筹失败时支持投资者退款
 
 ## 项目结构
 
 ```
-├── contract/          # 智能合约源代码
-├── scripts/           # 部署脚本
-├── test/              # 测试文件
-├── artifacts/         # 编译后的合约字节码和ABI
-├── cache/             # Hardhat缓存文件
-├── package.json       # 项目依赖和脚本
-├── hardhat.config.js  # Hardhat配置
-└── README.md          # 项目说明文档
+├── CreatorToken/      # 创作者奖励平台
+│   ├── contract/      # 智能合约源代码
+│   ├── scripts/       # 部署脚本
+│   └── test/          # 测试文件
+├── CrowdFund/         # 众筹平台
+│   ├── contract/      # 智能合约源代码
+│   ├── doc/           # 文档（包含前端对接文档）
+│   ├── scripts/       # 部署脚本
+│   └── test/          # 测试文件
+├── prd/               # 产品需求文档
+└── README.md          # 仓库说明文档
 ```
 
 ## 开始使用
@@ -30,23 +53,39 @@
 - Node.js >= 14.x
 - npm >= 6.x
 
-### 安装依赖
+### 项目使用说明
+
+#### CreatorToken
 
 ```bash
+cd CreatorToken
 npm install
+npm run compile  # 编译合约
+npm test         # 运行测试
 ```
 
-### 编译合约
+#### CrowdFund
 
 ```bash
-npm run compile
+cd CrowdFund
+npm install
+npm run compile  # 编译合约
+npm test         # 运行测试
 ```
 
-### 运行测试
+## 部署说明
 
-```bash
-npm test
-```
+每个项目都有独立的部署脚本和配置文件：
+
+- CreatorToken: `CreatorToken/scripts/deploy.js`
+- CrowdFund: `CrowdFund/scripts/deploy.js`
+
+部署前请确保配置了正确的环境变量（可参考各项目下的 `.env.example` 文件）。
+
+## 文档
+
+- CrowdFund前端对接文档：`CrowdFund/doc/前端对接文档.md`
+- 更多详细信息请参考各项目的README文件
 
 ### 部署合约
 
